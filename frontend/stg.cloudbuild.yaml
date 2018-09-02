@@ -6,7 +6,7 @@ steps:
   dir: frontend
 
 #Push to GCR
-- id: 'Push Docker Image to gcr'
+- id: 'Push Docker Image to GCR'
   name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'eu.gcr.io/$PROJECT_ID/guestbook_frontend:$COMMIT_SHA']
 
