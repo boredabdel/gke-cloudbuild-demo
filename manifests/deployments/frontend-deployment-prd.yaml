@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-prd
+  labels:
+    app: guestbook
+    tier: frontend
+    env: prd
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: guestbook
+      tier: frontend
+      env: prd
+  template:
+    metadata:
+      labels:
+        app: guestbook
+        tier: frontend
+        env: prd
+    spec:
+      containers:
+      - name: frontend
+        image: eu.gcr.io/hamina-demos/guestbook_frontend:prd
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: GET_HOSTS_FROM
+          value: dns
+        ports:
+        - containerPort: 80
