@@ -1,5 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-t', 'gcr.io/hamina-demos/guestbook_frontend_stg', '.' ]
+  dir: frontend
 images:
 - 'gcr.io/hamina-demos/guestbook_frontend_stg'
