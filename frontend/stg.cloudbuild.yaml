@@ -2,10 +2,10 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/guestbook_frontend_stg:$REVISION_ID', '.' ]
   dir: frontend
-images: 'gcr.io/$PROJECT_ID/guestbook_frontend_stg:$REVISION_ID'
 - name: 'gcr.io/cloud-builders/kubectl'
   args:
   - 'set'
   - 'image'
   - 'deployment/frontend'
   - 'frontend=gcr.io/$PROJECT_ID/guestbook_frontend_stg:$REVISION_ID'
+images: 'gcr.io/$PROJECT_ID/guestbook_frontend_stg:$REVISION_ID'
