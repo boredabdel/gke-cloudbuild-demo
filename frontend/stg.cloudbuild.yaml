@@ -8,3 +8,6 @@ steps:
   - 'image'
   - 'deployment/frontend'
   - 'frontend=gcr.io/$PROJECT_ID/guestbook_frontend_stg:$REVISION_ID'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=europe-north1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=guestbook'
