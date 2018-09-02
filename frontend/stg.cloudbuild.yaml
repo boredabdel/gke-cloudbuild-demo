@@ -8,4 +8,3 @@ steps:
   - 'image'
   - 'deployment/frontend'
   - 'frontend=gcr.io/$PROJECT_ID/guestbook_frontend_stg:$REVISION_ID'
-images: 'gcr.io/$PROJECT_ID/guestbook_frontend_stg:$REVISION_ID'
