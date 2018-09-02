@@ -12,10 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM php:5-apache
+FROM php:7-apache
 
 RUN apt-get update
-RUN apt-get install -y php-pear
+RUN apt-get install -y wget
+RUN wget http://pear.php.net/go-pear.phar
+RUN php go-pear.phar
 RUN pear channel-discover pear.nrk.io
 RUN pear install nrk/Predis
 
