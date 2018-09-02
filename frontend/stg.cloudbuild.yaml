@@ -1,18 +1,21 @@
 steps:
 #Build image
-- name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/guestbook_frontend_stg:$COMMIT_SHA', '.' ]
+- name: 'eu.gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'eu.gcr.io/$PROJECT_ID/guestbook_frontend:$COMMIT_SHA', '.' ]
   dir: frontend
 #Push to GCR
-- name: 'gcr.io/cloud-builders/docker'
-  args: ["push", "gcr.io/$PROJECT_ID/guestbook_frontend_stg:$COMMIT_SHA"]
+- name: 'eu.gcr.io/cloud-builders/docker'
+  args: ['push', 'eu.gcr.io/$PROJECT_ID/guestbook_frontend:$COMMIT_SHA']
+#Tag with Stagging
+- name: 'eu.gcr.io/cloud-builders/docker'
+  args: ['tag', 'eu.gcr.io/$PROJECT_ID/guestbook_frontend:$COMMIT_SHA', 'eu.gcr.io/$PROJECT_ID/guestbook_frontend:stg']
 #Update deployment with new image
-- name: 'gcr.io/cloud-builders/kubectl'
+- name: 'eu.gcr.io/cloud-builders/kubectl'
   args:
   - 'set'
   - 'image'
-  - 'deployment/frontend'
-  - 'frontend=gcr.io/$PROJECT_ID/guestbook_frontend_stg:$COMMIT_SHA'
+  - 'deployment/frontend-stg'
+  - 'frontend=eu.gcr.io/$PROJECT_ID/guestbook_frontend:stg'
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=europe-north1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=guestbook'
