@@ -8,7 +8,7 @@ images:
 #Update deployment
 - name: 'gcr.io/cloud-builders/kubectl'
   args:
-    - 'set'
-    - 'image'
-    - 'deployment/frontend'
-    - 'frontend=gcr.io/$PROJECT_ID/guestbook_frontend_stg:$REVISION_ID'
+  - 'set'
+  - 'image'
+  - 'deployment/frontend'
+  - 'frontend=gcr.io/$PROJECT_ID/guestbook_frontend_stg:$REVISION_ID'
