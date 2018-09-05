@@ -1,16 +1,23 @@
 steps:
 #Build image
-- name: 'eu.gcr.io/cloud-builders/docker'
+- id: 'Build Docker Image'
+  name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-t', 'eu.gcr.io/$PROJECT_ID/guestbook_frontend:$COMMIT_SHA', '.' ]
   dir: frontend
+
 #Push to GCR
-- name: 'eu.gcr.io/cloud-builders/docker'
+- id: 'Push Docker Image to GCR'
+  name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'eu.gcr.io/$PROJECT_ID/guestbook_frontend:$COMMIT_SHA']
-#Tag with Stagging
-- name: 'eu.gcr.io/cloud-builders/docker'
-  args: ['tag', 'eu.gcr.io/$PROJECT_ID/guestbook_frontend:$COMMIT_SHA', 'eu.gcr.io/$PROJECT_ID/guestbook_frontend:stg']
+
+#Tag with the staging tag in GCR using gcloud
+- id: 'Tag Image in GCR With stg tag'
+  name: 'gcr.io/cloud-builders/gcloud'
+  args: ['container', 'images', 'add-tag', 'eu.gcr.io/$PROJECT_ID/guestbook_frontend:$COMMIT_SHA', 'eu.gcr.io/$PROJECT_ID/guestbook_frontend:stg']
+
 #Update deployment with new image
-- name: 'eu.gcr.io/cloud-builders/kubectl'
+- id: 'Deploy to GKE staging'
+  name: 'gcr.io/cloud-builders/kubectl'
   args:
   - 'set'
   - 'image'
