@@ -1,0 +1,28 @@
+steps:
+#Tag with the prod tag in GCR using gcloud
+- id: 'Tag Image in GCR With stg tag'
+  name: 'gcr.io/cloud-builders/gcloud'
+  args: ['container', 'images', 'add-tag', 'eu.gcr.io/$PROJECT_ID/guestbook_frontend:stg', 'eu.gcr.io/$PROJECT_ID/guestbook_frontend:prd']
+
+#Update deployment with new image
+- id: 'Deploy to GKE prod'
+  name: 'gcr.io/cloud-builders/kubectl'
+  args:
+  - 'set'
+  - 'image'
+  - 'deployment/frontend-prd'
+  - 'frontend=eu.gcr.io/$PROJECT_ID/guestbook_frontend:prd'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=europe-north1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=guestbook'
+
+  #Update COMMIT_HASH env varialble
+- name: 'gcr.io/cloud-builders/kubectl'
+  args:
+  - 'set'
+  - 'env'
+  - 'deployment/frontend-prd'
+  - 'COMMIT_HASH=$COMMIT_SHA'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=europe-north1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=guestbook'
