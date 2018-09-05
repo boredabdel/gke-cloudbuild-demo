@@ -19,3 +19,14 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=europe-north1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=guestbook'
+
+  #Update COMMIT_HASH env varialble
+- name: 'eu.gcr.io/cloud-builders/kubectl'
+  args:
+  - 'set'
+  - 'env'
+  - 'deployment/frontend-stg'
+  - 'COMMIT_HASH=$COMMIT_SHA'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=europe-north1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=guestbook'
