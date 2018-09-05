@@ -31,5 +31,7 @@ spec:
         env:
         - name: GET_HOSTS_FROM
           value: dns
+        - name: COMMIT_HASH
+          value: hash
         ports:
         - containerPort: 80
