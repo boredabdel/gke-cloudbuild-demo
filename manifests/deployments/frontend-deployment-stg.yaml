@@ -23,6 +23,7 @@ spec:
       containers:
       - name: frontend
         image: eu.gcr.io/hamina-demos/guestbook_frontend:stg
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: 100m
@@ -30,5 +31,7 @@ spec:
         env:
         - name: GET_HOSTS_FROM
           value: dns
+        - name: COMMIT_HASH
+          value: hash
         ports:
         - containerPort: 80

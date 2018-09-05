@@ -6,8 +6,18 @@
     <script src="controllers.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.js"></script>
     <style>
-      .btn-primary {background-color: green};
+      .btn-primary {
+        background-color: black;
+        border-color: black;
+        };
     </style>
+<!--     <style>
+        .btn-primary {
+          background-color: red;
+          border-color: red;
+          };
+      </style>
+-->
   </head>
   <body ng-controller="RedisCtrl">
     <div style="width: 50%; margin-left: 20px">
@@ -19,7 +29,7 @@
     </fieldset>
     </form>
     <div>
-      <div ng-repeat="msg in messages track by $index">
+      <div ng-repeat="msg in mess ages track by $index">
         {{msg}}
       </div>
     </div>
