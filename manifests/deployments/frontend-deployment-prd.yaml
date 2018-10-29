@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: eu.gcr.io/hamina-demos/guestbook_frontend:prd
+        image: eu.gcr.io/unity3d-playground01/guestbook
         imagePullPolicy: Always
         resources:
           requests:
