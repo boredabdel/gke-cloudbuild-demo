@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: eu.gcr.io/hamina-demos/guestbook_frontend:stg
+        image: eu.gcr.io/abdeltechtals01/guestbook_frontend:stg
         imagePullPolicy: Always
         resources:
           requests:

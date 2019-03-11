@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: eu.gcr.io/unity3d-playground01/guestbook
+        image: eu.gcr.io/abdeltechtals01/gueguestbook_frontend:prd
         imagePullPolicy: Always
         resources:
           requests:
