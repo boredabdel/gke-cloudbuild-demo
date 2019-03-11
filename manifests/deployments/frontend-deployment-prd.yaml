@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: eu.gcr.io/abdeltechtals01/gueguestbook_frontend:prd
+        image: eu.gcr.io/abdeltechtalks01/guestbook_frontend:prd
         imagePullPolicy: Always
         resources:
           requests:
