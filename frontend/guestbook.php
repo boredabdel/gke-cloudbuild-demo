@@ -25,7 +25,7 @@ Predis\Autoloader::register();
 
 if (isset($_GET['cmd']) === true) {
   $host = 'redis-master';
-  if (getenv('GET_HOSTS_FROM') == 'env') {
+  if (getenv('GET_HOSTS_FROM') == 'dns') {
     $host = getenv('REDIS_MASTER_SERVICE_HOST');
   }
   header('Content-Type: application/json');
@@ -40,7 +40,7 @@ if (isset($_GET['cmd']) === true) {
     print('{"message": "Updated"}');
   } else {
     $host = 'redis-slave';
-    if (getenv('GET_HOSTS_FROM') == 'env') {
+    if (getenv('GET_HOSTS_FROM') == 'dns') {
       $host = getenv('REDIS_SLAVE_SERVICE_HOST');
     }
     $client = new Predis\Client([
