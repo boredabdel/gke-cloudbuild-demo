@@ -35,5 +35,5 @@ steps:
   - 'deployment/frontend-stg'
   - 'COMMIT_HASH=$COMMIT_SHA'
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=europe-north1-a'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=guestbook'
+  - 'CLOUDSDK_COMPUTE_ZONE=${_ZONE}'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER}'
