@@ -24,8 +24,8 @@ steps:
   - 'deployment/frontend-stg'
   - 'frontend=eu.gcr.io/$PROJECT_ID/guestbook_frontend:stg'
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=europe-north1-a'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=guestbook'
+  - 'CLOUDSDK_COMPUTE_ZONE=${_ZONE}'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER}'
 
   #Update COMMIT_HASH env varialble
 - name: 'gcr.io/cloud-builders/kubectl'
